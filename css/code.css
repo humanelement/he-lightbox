@@ -1,0 +1,26 @@
+.code {
+  font-family: "Courier New", Monaco, "Lucida Sans Typewriter", sans-serif;
+  background-color: #282c34;
+  color: #abb2bf;
+  padding: 20px;
+  font-size: 18px;
+  line-height: 22px;
+  white-space: nowrap;
+  overflow: auto;
+}
+.code .object {
+  color: #e06a64;
+}
+.code .comment {
+  color: #5c6370;
+  font-style: italic;
+}
+.code .method {
+  color: #61afef;
+}
+.code .number {
+  color: #dfb672;
+}
+.code .string {
+  color: #98c379;
+}

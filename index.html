@@ -1,0 +1,143 @@
+<html>
+<head>
+  <title>HE Lightbox</title>
+  <link type="text/css" rel="stylesheet" href="css/code.css" />
+  <link type="text/css" rel="stylesheet" href="css/example_styles.css" />
+  <link type="text/css" rel="stylesheet" href="css/styles.css" />
+
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/he_lightbox.min.js"></script>
+</head>
+<body>
+
+<h1>Human Element (HE) "Lightbox" Demo</h1>
+
+<p>A lightweight plugin to display a customizeable lightbox, containing content passed to the open function</p>
+  <p>Open the lightbox with <strong>heLightbox.open( ... );</strong></p>
+
+<h2>Example 1</h2>
+<a href="#" class="example1">Click here to open lightbox</a>
+
+<h2>Example 2</h2>
+<a href="#" class="example2">Click here to open lightbox... with an additional "wrap_class"</a>
+
+<h2>Example 3</h2>
+<a href="#" class="example3">Click here to open lightbox... with an additional "clear_content_onclose" command to stop the embedded video when the lightbox closes</a>
+<p><em>Note: <strong>autoplay=1</strong> is used to make the YouTube video auto play when the lightbox opens.</em></p>
+
+<h2>Example 4</h2>
+<a href="#" class="example4">Click here to open lightbox... both "onopen" and "onclose" callback functions are used to trigger alert() boxes.</a>
+
+<h2>Arguments</h2>
+
+<p><strong>id</strong> (<u>required</u>, string). Identifies each lightbox content-screen uniquely for client-side caching. Just pass a unique string, like "my-content".</p>
+
+<p><strong>content</strong> (<u>required</u>, string/DOMElements). Pass HTML content OR selected HTML element(s) as content that gets displayed in the lightbox.</p>
+
+<p><strong>clear_content_onclose</strong> (<u>optional</u>, true/false). If true, the content of the lightbox will be cleared when the lightbox is closed. This is necessary for embedded video content that must stop playing when the lightbox is closed.</p>
+
+<p><strong>wrap_class</strong> (<u>optional</u>, string array). Set an array of CSS class names to be applied to the lightbox when this content is open. This can be used to target this unique content and style the lightbox differently from when it is open with different content.</p>
+
+<p><strong>onopen</strong> (<u>optional</u>, function(wrapElement, contentElement)). You can define a callback function for when the lightbox content is fully opened on the screen (after the fade-in transition).</p>
+
+<p><strong>onclose</strong> (<u>optional</u>, function(wrapElement, contentElement)). You can define a callback function for when the lightbox content is fully closed  (after the fade-out transition).</p>
+
+<h2>Code for these examples</h2>
+
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+
+    //Example 1
+    jQuery('.example1:first').click(function(e){
+
+      e.preventDefault(); //prevent the default <a> click-to-follow href event
+
+      heLightbox.open({
+        id:'example1',
+        content:'<h1>Example 1</h1><p>Very Simple Lightbox with minimal styling.</p><p>Just the basic functionality and styles are here.</p><p>Hey, where\'s the padding?</p>'
+      });
+
+    });
+
+    //view this page's inline source to see the other examples... INSPECT SOURCE CODE WITH DEV TOOLS!
+
+    //Example 2
+    jQuery('.example2:first').click(function(e){
+
+      e.preventDefault(); //prevent the default <a> click-to-follow href event
+
+      heLightbox.open({
+        id:'example-2',
+        content:'<h1>Example 2</h1><p>Use the wrap_class property to add your own classes to the lightbox</p><p>For example, this lightbox uses a "padding-class" selector to add more styles to this specific content.</p>',
+        wrap_class:['padding-class'] //array of classes to add to the lightbox when this content is opened
+      });
+
+    });
+
+    //Example 3
+    jQuery('.example3:first').click(function(e){
+
+      e.preventDefault(); //prevent the default <a> click-to-follow href event
+
+      heLightbox.open({
+        id:'e3',
+        content:'<iframe src="https://www.youtube.com/embed/J---aiyznGQ?autoplay=1" frameborder="0" allowfullscreen></iframe>',
+        clear_content_onclose:true
+      });
+
+    });
+
+    //Example 4
+    jQuery('.example4:first').click(function(e){
+
+      e.preventDefault(); //prevent the default <a> click-to-follow href event
+
+      heLightbox.open({
+        id:'my-content-id',
+        content:'<h1>Example 4</h1><p>You should see an alert() on OPEN and on CLOSE.</p>',
+        wrap_class:['padding-class'],
+        
+        onopen:function(wrap, lb){
+          alert('lightbox OPEN!');
+        },
+        onclose:function(wrap, lb){
+          alert('lightbox CLOSE!');
+        }
+      });
+
+    });
+
+
+  });
+</script>
+
+<div class="code">
+  &lt;<span class="object">script</span> <span class="number">type</span>=<span class="string">"text/javascript"</span>&gt;<br />
+    <span class="method">jQuery</span>(<span class="number">document</span>).<span class="method">ready</span>(function(){<br />
+  <br />
+
+
+
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Example 1</span><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="object">jQuery</span>(<span class="string">'.example1:first'</span>).<span class="method">click</span>(function(<span class="object">e</span>){<br />
+  <br />
+  &nbsp;&nbsp;&nbsp;&nbsp;  <span class="object">e</span>.<span class="method">preventDefault</span>(); <span class="comment">//prevent the default &lt;a&gt; click-to-follow href event</span><br />
+  <br />
+  &nbsp;&nbsp;&nbsp;&nbsp;  <span class="object">heLightbox</span>.<span class="method">open</span>({<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id:<span class="string">''example1'</span>,<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content:<span class="string">'&lt;h1&gt;Example 1&lt;/h1&gt;&lt;p&gt;Very Simple Lightbox with minimal styling.&lt;/p&gt;&lt;p&gt;Just the basic functionality and styles are here.&lt;/p&gt;&lt;p&gt;Hey, where\'s the padding?&lt;/p&gt;'</span><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;  });<br />
+  <br />
+  &nbsp;&nbsp;&nbsp;&nbsp;});<br />
+  <br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//view this page's inline source to see the other examples... INSPECT SOURCE CODE WITH DEV TOOLS!</span>
+
+
+
+  <br />
+    });<br />
+  &lt;/<span class="object">script</span>&gt;
+</div>
+
+</body>
+</html>

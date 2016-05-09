@@ -1,0 +1,66 @@
+/*
+ * USAGE EXAMPLES:
+ *
+ * @include transition(width .2s linear);
+ * @include transition(color .2s linear, background-color .3s linear);
+ * @include transition(color .2s linear, background-color .3s linear, width .5s linear);
+ * etc...
+ *
+ * */
+@mixin transition($defs...) {
+  -webkit-transition: $defs; -moz-transition: $defs; -ms-transition: $defs; -o-transition: $defs; transition: $defs;
+}
+
+.he_lightbox_wrap{
+  opacity:1;@include transition(opacity .3s linear, background-color .3s linear);display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index:9999;background-color:rgba(0,0,0,.3);
+
+  .he_lightbox_body{
+    position:absolute;left:0;top:0;bottom:0;right:0;margin:auto;width:80%;max-width:945px;height:55%;max-height:600px;@include transition(width .2s linear, height .2s linear);
+
+    .lb_content{
+      background-color:#fff;position:absolute;left:0;top:0;bottom:0;right:0;margin:auto;width:100%;height:100%;
+
+      .lb{
+        box-sizing: border-box;-moz-box-sizing:border-box;display:none;box-shadow:0 0 20px rgba(0,0,0,.7);position:absolute;left:0;top:0;bottom:0;right:0;margin:auto;width:100%;height:100%;
+        background-position:center;background-repeat:no-repeat;
+        iframe{width:100%;height:100%;}
+      }
+      .lb.loading{
+        display:block;box-shadow:none;background-image:url(../images/loading.gif);
+
+        iframe{display:none;}
+        img{display:none;}
+      }
+      .lb.open{
+        display:block;
+
+        iframe{}
+      }
+    }
+    .lb_btns{
+      position:absolute;right:0;top:-30px;height:30px;width:100%;
+
+      .lbbtn_close{
+        position:absolute;right:0;top:0;height:100%;width:30px;line-height:30px;font-size:25px;cursor:pointer;
+        font-family: Consolas, monaco, monospace, 'Courier New', Courier, 'Lucida Sans Typewriter', monospace, sans-serif;
+
+        &:after{content:"X";text-shadow:0 0 6px rgba(0,0,0,.6);color:#fff;position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;text-align:center;line-height:inherit;font-size:inherit;font-family:inherit;}
+      }
+    }
+  }
+}
+
+.he_lightbox_wrap.loading{
+  display:block;opacity:.6;background-color:rgba(255,255,255,.5);
+
+  .lb_btns{display:none;}
+
+  .he_lightbox_body{
+    .lb_content{background-color:transparent;}
+  }
+}
+.he_lightbox_wrap.open{display:block;}
+
+@media screen and (max-width:770px) {
+  .he_lightbox_wrap .he_lightbox_body{width:100%;height:70%;}
+}
