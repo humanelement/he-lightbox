@@ -27,9 +27,11 @@ var heLightbox=(function(){
                       }
                     wrap.css('opacity','');
 
-                    if(lb[0].hasOwnProperty('lightbox_onclose_callback')){
-                      if(lb[0]['lightbox_onclose_callback']!=undefined){
-                        lb[0]['lightbox_onclose_callback'](wrap, lb);
+                    if(lb.length>0){
+                      if(lb[0].hasOwnProperty('lightbox_onclose_callback')){
+                        if(lb[0]['lightbox_onclose_callback']!=undefined){
+                          lb[0]['lightbox_onclose_callback'](wrap, lb);
+                        }
                       }
                     }
                 });
